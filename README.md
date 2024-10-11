@@ -1,4 +1,6 @@
-# Rsbuild Project
+# aw-hooks😍
+
+Custom React Hooks for building your components efficiently.
 
 ## Setup
 
