@@ -1,6 +1,6 @@
 # aw-hooks😍
 
-Custom React Hooks for building your components efficiently.
+Custom React Hooks for building your components efficiently
 
 ## Setup
 

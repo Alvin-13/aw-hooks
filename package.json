@@ -1,27 +1,97 @@
 {
   "name": "aw-hooks",
-  "private": true,
   "version": "1.0.0",
+  "description": "Custom React Hooks for building your components efficiently",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alvin-13/aw-hooks.git"
+  },
+  "author": {
+    "name": "Alvin",
+    "email": "alvinw8888@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "react-hooks"
+  ],
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "sideEffects": false,
+  "files": [
+    "lib/",
+    "esm/"
+  ],
+  "types": "lib/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "rsbuild build",
-    "check": "biome check --write",
-    "dev": "rsbuild dev --open",
+    "build:types": "tsc --project ./tsconfig.types.json",
+    "build:cjs": "tsc --project ./tsconfig.cjs.json",
+    "build:esm": "tsc --project ./tsconfig.esm.json",
+    "build": "npx del-cli lib esm && pnpm build:cjs && pnpm build:esm && pnpm build:types && echo 'Successfully built'",
+    "clean": "rimraf lib storybook-static esm",
+    "lint": "biome check --write",
+    "lint:fix": "biome check --fix",
+    "lint:types": "tsc --noEmit",
     "format": "biome format --write",
-    "preview": "rsbuild preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "storybook:clean": "rimraf storybook-static",
+    "storybook:build": "pnpm storybook:clean && storybook build",
+    "storybook:upload": "gh-pages -d storybook-static --git \"$(which git)\"",
+    "release": "semantic-release"
+  },
+  "browserslist": [
+    ">1%",
+    "last 1 version",
+    "Firefox ESR",
+    "not dead"
+  ],
+  "lint-staged": {
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+      "biome check --files-ignore-unknown=true",
+      "biome check --write --no-errors-on-unmatched",
+      "biome check --write --organize-imports-enabled=false --no-errors-on-unmatched",
+      "biome check --write --unsafe --no-errors-on-unmatched",
+      "biome format --write --no-errors-on-unmatched",
+      "biome lint --write --no-errors-on-unmatched"
+    ],
+    "*": [
+      "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
+    ]
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tslib": "^2.8.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@rsbuild/core": "^1.0.1",
-    "@rsbuild/plugin-react": "^1.0.1",
+    "@chromatic-com/storybook": "^2.0.2",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.1",
+    "@storybook/addon-essentials": "^8.3.5",
+    "@storybook/addon-interactions": "^8.3.5",
+    "@storybook/addon-links": "^8.3.5",
+    "@storybook/addon-mdx-gfm": "^8.3.5",
+    "@storybook/addon-onboarding": "^8.3.5",
+    "@storybook/blocks": "^8.3.5",
+    "@storybook/react": "^8.3.5",
+    "@storybook/test": "^8.3.5",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "husky": "^9.1.6",
-    "typescript": "^5.5.2"
+    "lint-staged": "^15.2.10",
+    "semantic-release": "^24.1.2",
+    "storybook": "^8.3.5",
+    "typescript": "^5.6.3"
   },
-  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
+  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b",
+  "volta": {
+    "node": "20.18.0"
+  }
 }
