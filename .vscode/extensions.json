@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "biomejs.biome", // Biome
+    "streetsidesoftware.code-spell-checker", // 拼写检查
+    "christian-kohler.path-intellisense", // 路径提示
+    "usernamehw.errorlens", // 错误提示增强
+    "formulahendry.auto-rename-tag" // 自动重命名标签
+  ]
+}

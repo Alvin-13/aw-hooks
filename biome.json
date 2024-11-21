@@ -22,5 +22,8 @@
     "rules": {
       "recommended": true
     }
+  },
+  "files": {
+    "ignore": ["stories/**/*"]
   }
 }

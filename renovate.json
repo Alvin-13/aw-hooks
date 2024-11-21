@@ -1,0 +1,25 @@
+{
+  "extends": ["config:base"],
+  "automerge": true,
+  "pinVersions": false,
+  "ignoreUnstable": true,
+  "major": {
+    "automerge": false
+  },
+  "devDependencies": {
+    "automerge": true,
+    "pinVersions": true
+  },
+  "packageRules": [
+    {
+      "packageNames": ["your-package-name"],
+      "enabled": true,
+      "automerge": true
+    }
+  ],
+  "schedule": ["before 5am on the first day of the month"],
+  "labels": ["dependencies", "renovate"],
+  "branchPrefix": "renovate/",
+  "commitMessage": "Update {{depName}} to version {{newVersion}}",
+  "ignore": ["some-package"]
+}
